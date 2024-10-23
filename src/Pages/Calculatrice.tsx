@@ -57,7 +57,6 @@ const Calculatrice = () => {
                 <button className="bouton" onClick={() => handleClick("6")}> 6 </button>
                 <button className="bouton" onClick={() => handleClick("*")}> x </button>
 
-                < br />
                 <button className="bouton" onClick={() => handleClick("7")}> 7 </button>
                 <button className="bouton" onClick={() => handleClick("8")}> 8 </button>
                 <button className="bouton" onClick={() => handleClick("9")}> 9 </button>
