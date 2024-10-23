@@ -76,6 +76,6 @@ const Calculatrice = () => {
             </div>
         );
     
-}
+}  
 
 export default Calculatrice;
