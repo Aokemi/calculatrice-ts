@@ -9,7 +9,7 @@ const Calculatrice = () => {
 
         if (value === "="){
             if (display.includes("!")){
-                const displayParts = display.split("! ")
+                const displayParts = display.split("!")
                 const num = parseInt(displayParts[0])
                 if (displayParts[1] !== ""){
                     setResult("Opération invalide")
@@ -57,7 +57,7 @@ const Calculatrice = () => {
                 <button className="bouton" onClick={() => handleClick("6")}> 6 </button>
                 <button className="bouton" onClick={() => handleClick("*")}> x </button>
 
-                <p>changed</p>
+                < br />
                 <button className="bouton" onClick={() => handleClick("7")}> 7 </button>
                 <button className="bouton" onClick={() => handleClick("8")}> 8 </button>
                 <button className="bouton" onClick={() => handleClick("9")}> 9 </button>
