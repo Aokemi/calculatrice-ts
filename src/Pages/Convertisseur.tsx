@@ -3,58 +3,39 @@ import { useState } from "react";
 
 const Convertisseur = () => {
     
-    const [temperature, setTemperature] = useState<number>(0)
-    const [volume, setVolume] = useState<number>(0)
-    const [temps, setTemps] = useState<string>("")
+    const [inputTop, setInputTop] = useState<number>(0)
+    const [inputBottom, setInputBottom] = useState<number>(0)
 
-    const handleChange = (e: React.ChangeEvent<any>) => {
-        if (e.target.name === "temperature"){
-            setTemperature(e.target.value)
-        } else if (e.target.name === "volume"){
-            setVolume(e.target.value)
-        } else if (e.target.name === "temps"){
-            setTemps(e.target.value)
-        }
-    }
-
-    const handleChangeInputTop = (e : React.ChangeEvent<any> ) => {
-
-        setTemperature(e.target.value)
-
-    }
-
-    const handleChangeInputBot = (e : React.ChangeEvent<any> ) => {
-
-        setTemperature(e.target.value)
-
-    }
-
-    function convertCtoF(number: number){
-        const convertedCtoF = (number - 32) * 5 / 9
-        return convertedCtoF
-    }
-
-    function convertFtoC(number: number){
-        const convertedFtoC = (number * 9 / 5) + 32
-        return convertedFtoC
-    }
+    function celsiusToFarenheit(celsius: number){
+        return (celsius * 9 / 5) + 32
+    }    
     
+    function farenheitToCelsius(farenheit: number){
+        return (farenheit - 32) * 5 / 9
+    }
+
+    const handleChangeTop = (e: React.ChangeEvent<HTMLInputElement>) =>  {
+
+        const value = parseInt(e.target.value)
+        setInputTop(value) // On charge la valeur du haut
+        setInputBottom(celsiusToFarenheit(inputTop)) // Puis on fait la conversion en bas
+
+    }
+
+    const handleChangeBottom = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+        const value = parseInt(e.target.value)
+        setInputBottom(value)
+        setInputTop(farenheitToCelsius(inputBottom))
+
+    }
 
     return (
         <div>
-            <p>Choisissez le type de conversion : </p>
-            <select id="convert" name="convert" onChange={handleChange}>
-                <option value="temperature"> Température </option>
-                <option value="volume"> Volume </option>
-                <option value="temps"> Temps </option>
-            </select>
-
-            < br />
-            < br />
-            <input type="number" name="valueTop" value={convertFtoC(temperature)} onChange={handleChangeInputTop}/>
+            <p> Choisissez le type de conversion : </p>
+            <input type="number" value={isNaN(inputTop) ? "" : inputTop} onChange={handleChangeTop}/> 
             <p> = </p>
-            <input type="number" name="valueBot" value={convertCtoF(temperature)} onChange={handleChangeInputBot} />
-
+            <input type="number" value={isNaN(inputBottom) ? "" : inputBottom} onChange={handleChangeBottom}/>
         </div>
     );
     
