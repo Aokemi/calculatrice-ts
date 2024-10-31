@@ -1,5 +1,3 @@
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Calculatrice from './Pages/Calculatrice';
 import Convertisseur from './Pages/Convertisseur';
@@ -28,16 +26,14 @@ const tabs: TabsType = [
 
 function App() {
 
+  
+
   const [selectedTab, setSelectedTab] = useState<number>(tabs[0].index); //  On initialise la constante de la tab sélectionnée 
 
   return (
+    
       <div className='App'>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <h1> Bienvenue ! </h1>
         <Choix selectedTab={selectedTab} onClick={setSelectedTab} tabs={tabs} /> {/* On appelle la page Choix ici */}
       </div>
   )
