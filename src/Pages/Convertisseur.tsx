@@ -17,15 +17,26 @@ const Convertisseur = () => {
         }
     }
 
-    const handleChangeValue = (e : React.ChangeEvent<any> ) => {
+    const handleChangeInputTop = (e : React.ChangeEvent<any> ) => {
 
         setTemperature(e.target.value)
 
     }
 
-    function convertTemperature(number: number){
-        const converted = (number - 32) * 5 / 9
-        return converted
+    const handleChangeInputBot = (e : React.ChangeEvent<any> ) => {
+
+        setTemperature(e.target.value)
+
+    }
+
+    function convertCtoF(number: number){
+        const convertedCtoF = (number - 32) * 5 / 9
+        return convertedCtoF
+    }
+
+    function convertFtoC(number: number){
+        const convertedFtoC = (number * 9 / 5) + 32
+        return convertedFtoC
     }
     
 
@@ -40,10 +51,9 @@ const Convertisseur = () => {
 
             < br />
             < br />
-            <input type="number" name="temperature" value={temperature} onChange={handleChangeValue}/>
-            <input type="number" name="convertTemperature" value={convertTemperature(temperature)}/>
-            < br />
-
+            <input type="number" name="valueTop" value={convertFtoC(temperature)} onChange={handleChangeInputTop}/>
+            <p> = </p>
+            <input type="number" name="valueBot" value={convertCtoF(temperature)} onChange={handleChangeInputBot} />
 
         </div>
     );
