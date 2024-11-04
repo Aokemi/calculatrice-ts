@@ -43,7 +43,7 @@ const Calculatrice = () => {
 
         return (
             <div>
-                <p> Calculatrice </p>
+                <h2> Calculatrice </h2>
                 <p className="texte"> {display} = {result} </p>
 
                 <button className="bouton" onClick={() => handleClick("1")} > 1 </button>
