@@ -4,7 +4,7 @@ import { useState } from "react";
 const Convertisseur = () => {
     
     const [inputTop, setInputTop] = useState<number>(0)
-    const [inputBottom, setInputBottom] = useState<number>(0)
+    const [inputBottom, setInputBottom] = useState<number>(celsiusToFarenheit(inputTop))
 
     function celsiusToFarenheit(celsius: number){
         return (celsius * 9 / 5) + 32
@@ -18,7 +18,7 @@ const Convertisseur = () => {
 
         const value = parseInt(e.target.value)
         setInputTop(value) // On charge la valeur du haut
-        setInputBottom(celsiusToFarenheit(inputTop)) // Puis on fait la conversion en bas
+        setInputBottom(celsiusToFarenheit(value)) // Puis on fait la conversion en bas
 
     }
 
@@ -26,13 +26,13 @@ const Convertisseur = () => {
 
         const value = parseInt(e.target.value)
         setInputBottom(value)
-        setInputTop(farenheitToCelsius(inputBottom))
+        setInputTop(farenheitToCelsius(value))
 
     }
 
     return (
         <div>
-            <p> Choisissez le type de conversion : </p>
+            <h2> Choisissez le type de conversion : </h2>
             <input type="number" value={isNaN(inputTop) ? "" : inputTop} onChange={handleChangeTop}/> 
             <p> = </p>
             <input type="number" value={isNaN(inputBottom) ? "" : inputBottom} onChange={handleChangeBottom}/>
