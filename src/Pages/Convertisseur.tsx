@@ -1,41 +1,40 @@
 import { useState } from "react";
 
-
 const Convertisseur = () => {
     
-    const [inputTop, setInputTop] = useState<number>(0)
-    const [inputBottom, setInputBottom] = useState<number>(celsiusToFarenheit(inputTop))
+    const [inputTop, setInputTop] = useState<string>("")
+    const [inputBottom, setInputBottom] = useState<string>("")
 
-    function celsiusToFarenheit(celsius: number){
-        return (celsius * 9 / 5) + 32
+    function celsiusToFarenheit(celsius: string){
+        const value = (parseFloat(celsius) * 9 / 5 + 32).toFixed(2)
+        return value
     }    
     
-    function farenheitToCelsius(farenheit: number){
-        return (farenheit - 32) * 5 / 9
+    function farenheitToCelsius(farenheit: string){
+        const value = (parseFloat(farenheit) - 32 * 5 / 9).toFixed(2)
+        return value
     }
 
     const handleChangeTop = (e: React.ChangeEvent<HTMLInputElement>) =>  {
 
-        const value = parseInt(e.target.value)
-        setInputTop(value) // On charge la valeur du haut
-        setInputBottom(celsiusToFarenheit(value)) // Puis on fait la conversion en bas
+        setInputTop(e.target.value) // On charge la valeur du haut
+        setInputBottom(celsiusToFarenheit(e.target.value)) // Puis on fait la conversion en bas
 
     }
 
     const handleChangeBottom = (e: React.ChangeEvent<HTMLInputElement>) => {
 
-        const value = parseInt(e.target.value)
-        setInputBottom(value)
-        setInputTop(farenheitToCelsius(value))
+        setInputBottom(e.target.value)
+        setInputTop(farenheitToCelsius(e.target.value))
 
     }
 
     return (
         <div>
             <h2> Choisissez le type de conversion : </h2>
-            <input type="number" value={isNaN(inputTop) ? "" : inputTop} onChange={handleChangeTop}/> 
+            <input type="number" value={inputTop} onChange={handleChangeTop}/> 
             <p> = </p>
-            <input type="number" value={isNaN(inputBottom) ? "" : inputBottom} onChange={handleChangeBottom}/>
+            <input type="number" value={inputBottom} onChange={handleChangeBottom}/>
         </div>
     );
     
